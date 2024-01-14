@@ -8,8 +8,12 @@ import { ArrowLeftSquare, BookmarkIcon } from "lucide-react";
 import { TbThumbUp } from "react-icons/tb";
 import { Button } from "@/components/ui/chad-cn/button";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { useEffect } from "react";
 
 function ArticlePage({ params }: { params?: Params }) {
+  // const likes = Math.floor(Math.random() * 2000);
+  const likes = 420.69;
+
   return (
     <article>
       <header className="bg sticky top-0 bg-background/95">
@@ -32,13 +36,13 @@ function ArticlePage({ params }: { params?: Params }) {
 
         <div className="flex items-center justify-center gap-1 self-end">
           <Button variant="ghost" className="space-x-1">
-            <span className="font-medium text-primary">
-              {Math.floor(Math.random() * 2000)}
+            <span className="font-medium text-primary">{likes}</span>
+            <span>
+              <TbThumbUp
+                size={24}
+                className="mb-1 fill-primary-foreground stroke-primary"
+              />
             </span>
-            <TbThumbUp
-              size={24}
-              className="mb-1 fill-primary-foreground stroke-primary"
-            />
           </Button>
 
           <Button variant="ghost">
@@ -73,6 +77,7 @@ function ArticlePage({ params }: { params?: Params }) {
           quality={75}
           width={400}
           className="m-4 mx-auto rounded-3xl ring-1 ring-ring"
+          priority={true}
         />
       </div>
 
