@@ -4,16 +4,12 @@ import { Separator } from "@/components/ui/chad-cn/separator";
 import Image from "next/image";
 import hizb from "@/../public/hizb.jpg";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowLeftSquare,
-  ArrowLeftSquareIcon,
-  BookmarkIcon,
-} from "lucide-react";
+import { ArrowLeftSquare, BookmarkIcon } from "lucide-react";
 import { TbThumbUp } from "react-icons/tb";
 import { Button } from "@/components/ui/chad-cn/button";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-function ArticlePage() {
+function ArticlePage({ params }: { params?: Params }) {
   return (
     <article>
       <header className="bg sticky top-0 bg-background/95">
@@ -59,7 +55,7 @@ function ArticlePage() {
         <Separator className="my-4" />
 
         <Link
-          href="/app"
+          href="/app/blog"
           className="flex w-fit items-center gap-2 rounded-lg px-2 py-1 text-lg font-semibold ring-[0.15rem] ring-ring duration-75 hover:scale-110 hover:bg-card"
         >
           <ArrowLeftSquare
