@@ -1,9 +1,8 @@
-import LandingPage from "@/components/Pages/LandingPage/LandingPage";
+import Link from "next/link";
+import styles from "./homepage.module.css";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 
-export default function page() {
-  return (
-    <>
-      <LandingPage />
-    </>
-  );
+export default function Home() {
+  return <div></div>;
 }
