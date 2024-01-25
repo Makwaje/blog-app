@@ -11,7 +11,7 @@ function AuthLink() {
 
   return (
     <>
-      {authenticated ? (
+      {!authenticated ? (
         <Link href="/login" className={styles.link}>
           Login
         </Link>
