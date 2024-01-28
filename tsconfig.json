@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/Headers.tsx",
-    "src/context/ThemeContext"
+    "src/context/ThemeContext",
+    "src/app/api/[...nextauth]/route.ts"
   ],
   "exclude": ["node_modules"]
 }
