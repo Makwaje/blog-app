@@ -5,10 +5,23 @@ import { useState } from "react";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-function page() {
+function WritePage() {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
+
+  const { data, status } = useSession();
+  const router = useRouter();
+
+  if (status === "loading") {
+    return <div className={styles.loading}>Loading...</div>;
+  }
+
+  if (status === "unauthenticated") {
+    router.push("/");
+  }
 
   return (
     <main className={styles.container}>
@@ -49,4 +62,4 @@ function page() {
   );
 }
 
-export default page;
+export default WritePage;

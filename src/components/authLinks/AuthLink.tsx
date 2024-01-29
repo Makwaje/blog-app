@@ -9,8 +9,6 @@ function AuthLink() {
   // temporary
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(status);
-
   return (
     <>
       {status === "unauthenticated" ? (

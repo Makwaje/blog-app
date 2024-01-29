@@ -1,31 +1,33 @@
 import Image from "next/image";
 import styles from "./card.module.css";
 import Link from "next/link";
+import { PostType } from "@/utils/types";
 
-function Card() {
+function Card({ post }: { post: PostType }) {
   return (
     <div className={styles.container}>
-      <div className={styles.imageContainer}>
-        <Image src="/p1.jpeg" alt="post picture" fill className={styles.img} />
-      </div>
+      {post.img && (
+        <div className={styles.imageContainer}>
+          <Image
+            src={post.img}
+            alt="post picture"
+            fill
+            className={styles.img}
+          />
+        </div>
+      )}
       <div className={styles.textContainer}>
         <div className={styles.detail}>
-          <span className={styles.date}>21/9/2007 - </span>
-          <span className={styles.category}>CULTURE</span>
+          <span className={styles.date}>
+            {post.createdAt.substring(0, 10)} -
+          </span>
+          <span className={styles.category}>{post.catSlug}</span>
         </div>
-        <Link href="/">
-          <h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta,
-            earum.
-          </h2>
+        <Link href={`/posts/${post.slug}`}>
+          <h2>{post.title.substring(0, 60)}</h2>
         </Link>
-        <p className={styles.description}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-          explicabo suscipit laborum pariatur voluptatem ullam hic perferendis
-          quidem cupiditate, harum expedita eaque ratione minima maxime libero.
-          Similique esse a quae.
-        </p>
-        <Link className={styles.link} href="/">
+        <p className={styles.description}>{post.desc}</p>
+        <Link className={styles.link} href={`/posts/${post.slug}`}>
           Read More
         </Link>
       </div>

@@ -12,7 +12,7 @@ type ThemeType = "dark" | "light";
 
 function getFromLocalStorage(): ThemeType {
   if (typeof window !== "undefined") {
-    const value = localStorage.getItem("theme");
+    const value = localStorage.getItem("theme") as ThemeType;
 
     if (value === null) return "light";
     else if (value === "light") return "light";
