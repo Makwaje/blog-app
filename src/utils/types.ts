@@ -28,5 +28,3 @@ export type CommentType = {
   postSlug: string;
   post: PostType;
 };
-
-// https://music.apple.com/us/album/quest-for-fire/1672154692

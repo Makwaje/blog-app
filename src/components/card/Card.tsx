@@ -21,7 +21,7 @@ function Card({ post }: { post: PostType }) {
           <span className={styles.date}>
             {post.createdAt.substring(0, 10)} -
           </span>
-          <span className={styles.category}>{post.catSlug}</span>
+          <span className={styles.category}> {post.catSlug}</span>
         </div>
         <Link href={`/posts/${post.slug}`}>
           <h2>{post.title.substring(0, 60)}</h2>

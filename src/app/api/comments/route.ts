@@ -31,9 +31,8 @@ export const GET = async (req: Request) => {
 // CREATE A COMMENT
 export const POST = async (req: Request) => {
   const session = await getAuthSession();
-  console.log(session);
 
-  if (!session) {
+  if (!session?.user) {
     return new NextResponse(
       JSON.stringify({
         message: "There is no currently active session, please login/signup ",
