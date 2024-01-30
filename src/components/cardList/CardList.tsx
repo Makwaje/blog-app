@@ -18,7 +18,7 @@ async function getData(page: Number, cat: string) {
 
 type CardListType = {
   page: number;
-  cat?: string;
+  cat: string;
 };
 
 async function CardList({ page, cat }: CardListType) {

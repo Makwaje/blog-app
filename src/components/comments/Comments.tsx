@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./comments.module.css";
 import Image from "next/image";
+import useSWR from "swr";
 
 const authenticated = false;
 function Comments() {
+  const { data, isLoading } = useSWR("");
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Comments</h2>

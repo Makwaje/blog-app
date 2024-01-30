@@ -1,3 +1,11 @@
+export type UserType = {
+  id: string;
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  image: string | " ";
+};
+
 export type PostType = {
   id: string;
   createdAt: string;
@@ -8,4 +16,5 @@ export type PostType = {
   views: Number;
   catSlug: string;
   userEmail: string;
+  user: UserType;
 };
