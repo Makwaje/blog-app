@@ -1,8 +1,9 @@
 import CardList from "@/components/cardList/CardList";
 import styles from "./blogPage.module.css";
 import Menu from "@/components/menu/Menu";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-function BlogPage({ searchParams }) {
+function BlogPage({ searchParams }: { searchParams: Params }) {
   const page = parseInt(searchParams.page) || 1;
   const { cat } = searchParams || "";
 

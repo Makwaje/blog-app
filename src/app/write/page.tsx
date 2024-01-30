@@ -8,7 +8,7 @@ import "react-quill/dist/quill.bubble.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-function WritePage() {
+export default function WritePage() {
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -61,5 +61,3 @@ function WritePage() {
     </main>
   );
 }
-
-export default WritePage;
