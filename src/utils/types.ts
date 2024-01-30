@@ -18,3 +18,15 @@ export type PostType = {
   userEmail: string;
   user: UserType;
 };
+
+export type CommentType = {
+  id: string;
+  createdAt: string;
+  desc: string;
+  userEmail: string;
+  user: UserType;
+  postSlug: string;
+  post: PostType;
+};
+
+// https://music.apple.com/us/album/quest-for-fire/1672154692

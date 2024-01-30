@@ -56,12 +56,12 @@ async function SinglePage({ params }: { params: Params }) {
       </div>
       <div className={styles.content}>
         <div className={styles.post}>
-          {/* <div
+          <div
             className={styles.desc}
             dangerouslySetInnerHTML={{ __html: post?.desc }}
-          /> */}
+          />
           <div className={styles.comment}>
-            <Comments />
+            <Comments postSlug={slug} />
           </div>
         </div>
         <Menu />

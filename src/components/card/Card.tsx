@@ -26,7 +26,10 @@ function Card({ post }: { post: PostType }) {
         <Link href={`/posts/${post.slug}`}>
           <h2>{post.title.substring(0, 60)}</h2>
         </Link>
-        <p className={styles.description}>{post.desc}</p>
+        <p
+          className={styles.description}
+          dangerouslySetInnerHTML={{ __html: post.desc.substring(0, 250) }}
+        />
         <Link className={styles.link} href={`/posts/${post.slug}`}>
           Read More
         </Link>

@@ -6,6 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import TwitterProvider from "next-auth/providers/twitter";
 import { prisma } from "./connect";
+import { getServerSession } from "next-auth";
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -24,3 +25,7 @@ export const authOptions = {
     }),
   ],
 };
+
+export function getAuthSession() {
+  return getServerSession(authOptions);
+}
