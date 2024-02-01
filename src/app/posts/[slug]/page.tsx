@@ -6,7 +6,7 @@ import { PostType } from "@/utils/types";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 async function getData(slug: string) {
-  const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
+  const res = await fetch(`${process.env.BASE_URL}/api/posts/${slug}`, {
     cache: "no-cache",
   });
 

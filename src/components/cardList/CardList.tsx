@@ -5,7 +5,7 @@ import type { PostType } from "@/utils/types";
 
 async function getData(page: Number, cat: string) {
   const res = await fetch(
-    `http://localhost:3000/api/posts?page=${page}&cat=${cat || ""}`,
+    `${process.env.BASE_URL}/api/posts?page=${page}&cat=${cat || ""}`,
     {
       cache: "no-cache",
     },
