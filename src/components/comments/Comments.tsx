@@ -6,7 +6,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { CommentType } from "@/utils/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 async function fetcher(url: string) {
   const res = await fetch(url);
@@ -18,12 +18,16 @@ async function fetcher(url: string) {
   return data;
 }
 
+const url = process.env.BASE_URL;
+
 function Comments({ postSlug }: { postSlug: string }) {
+  console.log("HELLO MOM");
   const [desc, setDesc] = useState<string>("");
+  const [isMounted, setIsMounted] = useState(false);
   const { status } = useSession();
 
   const { data, mutate, isLoading } = useSWR(
-    `${process.env.BASE_URL}/api/comments?postSlug=${postSlug}`,
+    `https://makwaje-blog.vercel.app/api/comments?postSlug=${postSlug}`,
     fetcher,
   );
 
@@ -35,61 +39,70 @@ function Comments({ postSlug }: { postSlug: string }) {
     setDesc("");
     mutate();
   }
-  console.log(data);
-  return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Comments</h2>
+  // console.log(data);
 
-      {status === "authenticated" ? (
-        <div className={styles.write}>
-          <textarea
-            placeholder="write a comment"
-            className={styles.input}
-            onChange={(e) => setDesc(e.target.value)}
-            value={desc}
-          />
-          <button className={styles.button} onClick={handleSubmit}>
-            {isLoading ? "wait..." : "send"}
-          </button>
-        </div>
-      ) : (
-        <Link href="/login">Login to write a comment</Link>
-      )}
+  useEffect(function () {
+    setIsMounted(true);
+  }, []);
+  if (isMounted) console.log("Mounted MOM");
 
-      <div className={styles.comments}>
-        {/*  */}
-        {isLoading
-          ? "Loading..."
-          : data.comments?.map?.((comment: CommentType) => {
-              return (
-                <div className={styles.comment} key={comment.id}>
-                  <div className={styles.user}>
-                    {comment?.user?.image && (
-                      <Image
-                        src={comment?.user?.image}
-                        alt="profile"
-                        className={styles.avatar}
-                        width={50}
-                        height={50}
-                      />
-                    )}
-                    <div className={styles.userInfo}>
-                      <span className={styles.username}>
-                        {comment.user.name}
-                      </span>
-                      <span className={styles.date}>
-                        {comment.createdAt.substring(0, 10)}
-                      </span>
+  if (isMounted)
+    return (
+      <div className={styles.container}>
+        <h2 className={styles.title}>Comments</h2>
+
+        {status === "authenticated" ? (
+          <div className={styles.write}>
+            <textarea
+              placeholder="write a comment"
+              className={styles.input}
+              onChange={(e) => setDesc(e.target.value)}
+              value={desc}
+            />
+            <button className={styles.button} onClick={handleSubmit}>
+              {isLoading ? "wait..." : "send"}
+            </button>
+          </div>
+        ) : (
+          <Link href="/login">Login to write a comment</Link>
+        )}
+
+        <div className={styles.comments}>
+          {/*  */}
+          {isLoading
+            ? "Loading..."
+            : data?.map?.((comment: CommentType) => {
+                console.log("HELLO MOM");
+                console.log(comment);
+                return (
+                  <div className={styles.comment} key={comment.id}>
+                    <div className={styles.user}>
+                      {comment?.user?.image && (
+                        <Image
+                          src={comment?.user?.image}
+                          alt="profile"
+                          className={styles.avatar}
+                          width={50}
+                          height={50}
+                        />
+                      )}
+                      <div className={styles.userInfo}>
+                        <span className={styles.username}>
+                          {comment.user.name}
+                        </span>
+                        <span className={styles.date}>
+                          {comment.createdAt.substring(0, 10)}
+                        </span>
+                      </div>
                     </div>
+                    <p className={styles.desc}>{comment.desc}</p>
                   </div>
-                  <p className={styles.desc}>{comment.desc}</p>
-                </div>
-              );
-            })}
-        {/*  */}
+                );
+              })}
+          {/*  */}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 export default Comments;

@@ -12,7 +12,6 @@ type Pagination = {
 function Pagination({ page, hasPrev, hasNext }: Pagination) {
   const router = useRouter();
 
-  console.log(page);
   return (
     <div className={styles.container}>
       <button

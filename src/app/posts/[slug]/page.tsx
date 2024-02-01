@@ -17,10 +17,9 @@ async function getData(slug: string) {
 
 async function SinglePage({ params }: { params: Params }) {
   const { slug } = params;
-  console.log(slug);
 
   const { post } = (await getData(slug)) as { post: PostType };
-  console.log(post);
+
   return (
     <main className={styles.container}>
       <div className={styles.infoContainer}>

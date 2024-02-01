@@ -9,8 +9,6 @@ export const GET = async (req: Request) => {
 
   const postSlug = searchParams.get("postSlug");
 
-  console.log(postSlug);
-
   try {
     const comments = await prisma.comment.findMany({
       where: {
@@ -18,6 +16,8 @@ export const GET = async (req: Request) => {
       },
       include: { user: true },
     });
+
+    console.log("i work");
 
     return new NextResponse(JSON.stringify({ comments, status: 200 }));
   } catch (err) {

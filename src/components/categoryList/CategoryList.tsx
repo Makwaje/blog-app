@@ -21,7 +21,6 @@ type CategoryType = {
 
 async function CategoryList() {
   const { categories } = await getData();
-  console.log(categories);
 
   return (
     <div className={styles.container}>
