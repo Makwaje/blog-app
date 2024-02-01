@@ -28,7 +28,7 @@ function Comments({ postSlug }: { postSlug: string }) {
   );
 
   async function handleSubmit() {
-    await fetch("http://localhost:3000/api/comments", {
+    await fetch("/api/comments", {
       method: "POST",
       body: JSON.stringify({ desc, postSlug }),
     });

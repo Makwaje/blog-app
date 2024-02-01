@@ -23,7 +23,7 @@
 }
 
 .addButton {
-  border-color: #1a8917;
+  border-color: var(--textColor);
 }
 
 .add {
@@ -36,12 +36,17 @@
   left: 50px;
 }
 
+.icon {
+  stroke: var(--textColor);
+}
+
 .input {
   padding: 50px;
   font-size: 64px;
   border: none;
   outline: none;
   background-color: transparent;
+  color: var(--textColor);
 }
 
 .input::placeholder {

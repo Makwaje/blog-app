@@ -17,12 +17,10 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 import dynamic from "next/dynamic";
-
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const storage = getStorage(app);
 
 export default function WritePage() {
-  const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
   const [isOpen, setIsOpen] = useState(false);
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
@@ -83,7 +81,7 @@ export default function WritePage() {
   }
 
   async function handleSubmit() {
-    const res = await fetch("http://localhost:3000/api/posts", {
+    const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
         title,
@@ -126,7 +124,7 @@ export default function WritePage() {
           className={styles.button}
           onClick={() => setIsOpen((open) => !open)}
         >
-          <PlusCircle size={40} />
+          <PlusCircle size={40} className={styles.icon} />
         </button>
         {isOpen && (
           <div className={styles.add}>
@@ -140,16 +138,16 @@ export default function WritePage() {
             />
             <button className={styles.addButton}>
               <label htmlFor="image" style={{ cursor: "pointer" }}>
-                <ImagePlus />
+                <ImagePlus className={styles.icon} />
               </label>
             </button>
 
             <button className={styles.addButton}>
-              <Upload />
+              <Upload className={styles.icon} />
             </button>
 
             <button className={styles.addButton}>
-              <FileVideoIcon />
+              <FileVideoIcon className={styles.icon} />
             </button>
           </div>
         )}
