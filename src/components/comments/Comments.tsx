@@ -60,7 +60,7 @@ function Comments({ postSlug }: { postSlug: string }) {
         {/*  */}
         {isLoading
           ? "Loading..."
-          : data.comments.map((comment: CommentType) => {
+          : data.comments?.map?.((comment: CommentType) => {
               return (
                 <div className={styles.comment} key={comment.id}>
                   <div className={styles.user}>
