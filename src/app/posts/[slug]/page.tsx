@@ -55,10 +55,12 @@ async function SinglePage({ params }: { params: Params }) {
       </div>
       <div className={styles.content}>
         <div className={styles.post}>
-          <div
-            className={styles.desc}
-            dangerouslySetInnerHTML={{ __html: post?.desc }}
-          />
+          {post?.desc && (
+            <div
+              className={styles.desc}
+              dangerouslySetInnerHTML={{ __html: post?.desc }}
+            />
+          )}
           <div className={styles.comment}>
             <Comments postSlug={slug} />
           </div>

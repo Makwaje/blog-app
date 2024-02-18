@@ -68,6 +68,8 @@
   font-size: 20px;
   font-weight: 300;
   margin-bottom: 20px;
+
+  word-break: break-word;
 }
 
 @media screen and (max-width: 1536px) {

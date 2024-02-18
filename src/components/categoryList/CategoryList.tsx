@@ -29,7 +29,7 @@ async function CategoryList() {
         {categories?.map?.((category: CategoryType) => {
           return (
             <Link
-              href={"/blog?cat=style"}
+              href={`/blog?cat=${category.title}`}
               className={`${styles.category} ${styles[category.slug]}`}
               key={category.id}
             >

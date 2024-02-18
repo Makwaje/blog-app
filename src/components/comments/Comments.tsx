@@ -27,8 +27,9 @@ function Comments({ postSlug }: { postSlug: string }) {
   const { status } = useSession();
 
   const { data, mutate, isLoading } = useSWR(
-    `https://makwaje-blog.vercel.app/api/comments?postSlug=${postSlug}`,
-    // `http://localhost:3000/api/comments?postSlug=${postSlug}`,
+    // USE 'VERCEL' on production deployment.
+    // `https://makwaje-blog.vercel.app/api/comments?postSlug=${postSlug}`,
+    `http://localhost:3000/api/comments?postSlug=${postSlug}`,
     fetcher,
   );
 
