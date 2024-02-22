@@ -1,4 +1,18 @@
 .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.categorySelector {
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  min-width: 20%;
+  max-width: 35%;
+
+  border: 2px solid var(--textColor);
+  border-radius: 4px;
+  height: 32px;
 }
 
 .editor {

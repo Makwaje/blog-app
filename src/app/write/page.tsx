@@ -81,17 +81,22 @@ export default function WritePage() {
   }
 
   async function handleSubmit() {
-    const res = await fetch("/api/posts", {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        desc: value,
-        img: media,
-        slug: slugify(title),
-        catSlug: "travel",
-      }),
-    });
-    console.log(res);
+    if (cat === "") {
+      alert("Please pick a category");
+      return;
+    } else {
+      const res = await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          desc: value,
+          img: media,
+          slug: slugify(title),
+          catSlug: cat,
+        }),
+      });
+      console.log(res);
+    }
   }
 
   if (status === "loading") {
@@ -111,13 +116,24 @@ export default function WritePage() {
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
+      {/* CATEGORY  */}
 
-      <input
-        type="text"
-        placeholder="Category"
+      <label htmlFor="category">Pick a category</label>
+      <select
+        id="category"
         onChange={(e) => setCat(e.target.value)}
         value={cat}
-      />
+        className={styles.categorySelector}
+        defaultValue={"none"}
+      >
+        <option value={""}>Please Select ...</option>
+        <option value="style">Style</option>
+        <option value="fashion">Fashion</option>
+        <option value="food">Food</option>
+        <option value="travel">Travel</option>
+        <option value="coding">Coding</option>
+        <option value="culture">Culture</option>
+      </select>
 
       <div className={styles.editor}>
         <button
